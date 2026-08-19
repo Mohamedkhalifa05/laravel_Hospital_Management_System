@@ -63,7 +63,7 @@ public function update(Request $request)
 
     public function destroy(Request $request)
     {
-      $this->Sections->destory($request);
+      $this->Sections->destroy($request);
 
     session()->flash('delete');
 

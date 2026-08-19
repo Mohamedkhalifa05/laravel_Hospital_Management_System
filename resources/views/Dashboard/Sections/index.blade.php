@@ -66,7 +66,6 @@
 
 
 
-                                           @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -75,12 +74,16 @@
                         </div>
                         <!--/div-->
 
-                    @include('Dashboard.Sections.add')
+
                     @include('Dashboard.Sections.edit')
                     @include('Dashboard.Sections.delete')
                     <!-- /row -->
 
-				</div>
+
+
+                @endforeach
+                @include('Dashboard.Sections.add')
+                </div>
 				<!-- row closed -->
 
 			<!-- Container closed -->

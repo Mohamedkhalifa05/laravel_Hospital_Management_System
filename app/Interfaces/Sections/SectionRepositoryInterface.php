@@ -13,5 +13,5 @@ public function store($request);
 public function update(Request $request);
 
 
-public function destory(Request $request);
+public function destroy(Request $request);
 }

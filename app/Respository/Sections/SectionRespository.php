@@ -34,9 +34,9 @@ class SectionRespository implements SectionRepositoryInterface {
 
     return $section;
     }
-    public function destory( Request $request){
+    public function destroy( Request $request){
         $section = Section::findOrFail($request->id);
-        return $section;
+        $section->delete();
     }
 
 
