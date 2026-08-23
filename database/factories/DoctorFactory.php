@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Doctor;
+use App\Models\Section;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,7 +26,9 @@ class DoctorFactory extends Factory
                 400,
                 500
             ]),
+            'section_id' => Section::inRandomOrder()->first()->id,
         ];
+       
     }
 
     public function configure()

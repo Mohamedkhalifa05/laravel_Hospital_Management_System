@@ -21,7 +21,7 @@ protected $model = Image::class;
     public function definition(): array
     {
         return [
-         "filename" => $this->faker->randomElement(["1.jpg","2.jpg","3.jpg","4.jpg"]),
+         "filename" => $this->faker->name.".jpg",
          "imageable_id" => Doctor::all()->random()->id,
          "imageable_type" => "App\Models\Doctor"
         ];

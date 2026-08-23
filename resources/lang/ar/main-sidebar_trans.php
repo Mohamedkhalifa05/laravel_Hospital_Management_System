@@ -11,5 +11,5 @@ return array (
   'group_services' => 'مجموعة خدمات',
   'index' => 'الرئيسية',
   'sections' => 'الاقسام',
-  'view_all' => 'عرض الكل',
+  'view all' => 'عرض الكل',
 );

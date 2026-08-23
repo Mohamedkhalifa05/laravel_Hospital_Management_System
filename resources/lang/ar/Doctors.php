@@ -2,6 +2,7 @@
 
 return array (
   'Choose' => 'اختار من القائمة',
+  'Doctors' => 'الاطباء',
   'Enabled' => 'مفعل',
   'Not_enabled' => 'غير مفعل',
   'Processes' => 'العمليات',
@@ -24,4 +25,5 @@ return array (
   'section' => 'القسم',
   'submit' => 'تاكيد',
   'update_password' => 'تغير كلمة المرور',
+  'view_all' => 'عرض الكل',
 );

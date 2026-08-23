@@ -11,5 +11,5 @@ return array (
   'group_services' => 'Group Services',
   'index' => 'Home',
   'sections' => 'Sections',
-  'view_all' => 'view All',
+  'view all' => 'View All',
 );

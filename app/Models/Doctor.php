@@ -11,14 +11,15 @@ class Doctor extends Model implements TranslatableContract
 {
     use HasFactory, Translatable;
 
-    protected $fillable = [
-        'email',
-        'email_verified_at',
-        'password',
-        'phone',
-        'price',
-        'name','appointments'
-    ];
+    // protected $fillable = [
+    //     'email',
+    //     'email_verified_at',
+    //     'password',
+    //     'phone',
+    //     'price',
+    //     'name','appointments'
+    // ];
+    protected $guarded = [];
 
     public $translatedAttributes = [
         'name',
@@ -28,6 +29,9 @@ class Doctor extends Model implements TranslatableContract
 
     public function image(){
         return $this->morphOne(Image::class,"imageable");
+    }
+    public function section(){
+      return  $this->belongsTo(Section::class);
     }
 
 }
