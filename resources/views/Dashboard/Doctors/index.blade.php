@@ -74,11 +74,13 @@
                                     <td>{{ $doctor->email }}</td>
                                     <td>{{ $doctor->section->name}}</td>
                                     <td>{{ $doctor->phone}}</td>
-                                    
-                                     <td>
-                                   {{ $doctor->appointments }}
+
+                                 <td>
+
+                                  {{ $doctor->doctorappointments->pluck('name')->implode('/ ') }}
+
                                     </td>
-                                      
+
                                     <td>
                                         <div style="margin-left: -16px !important;"
                                             class="dot-label bg-{{$doctor->status == 1 ? 'success':'danger'}} "></div>
@@ -100,7 +102,7 @@
 
                                     </td>
                                 </tr>
-                                {{-- @include('Dashboard.Doctors.add') --}}
+
                                 @include('Dashboard.Doctors.delete')
                                 @include('Dashboard.Doctors.delete_select')
                                 {{-- @include('Dashboard.Doctors.update_password') --}}

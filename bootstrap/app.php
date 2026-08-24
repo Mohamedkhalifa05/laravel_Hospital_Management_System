@@ -22,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
           $middleware->alias([
-             
+
              'admin' => \App\Http\Middleware\AdminMiddleware::class,
             /**** OTHER MIDDLEWARE ALIASES ****/
             'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
@@ -31,6 +31,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
             'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         ]);
+
+    $middleware->redirectGuestsTo(function ($request) {
+        return route('user.login');
+    });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -11,19 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('section_translations', function (Blueprint $table) {
-            // $table->bigIncrements('id');
+        Schema::create('appointment_translations', function (Blueprint $table) {
             $table->id();
             $table->string('locale')->index();
-            $table->longText("description")->nullable();
-            // $table->unsignedBigInteger("section_id");
-            $table->unique(["section_id","locale"]);
-            $table->foreignId("section_id")->references('id')->on('sections')->onDelete('cascade');
             $table->string('name');
-
-
-
-    });
+            $table->unique(['locale',"appointment_id"]);
+            $table->foreignId("appointment_id")->constrained("appointments")->onDelete("cascade");
+        });
     }
 
     /**
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('section-translations');
+        Schema::dropIfExists('appointment_translations');
     }
 };

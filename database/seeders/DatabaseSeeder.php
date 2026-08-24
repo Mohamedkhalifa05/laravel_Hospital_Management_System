@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Doctor;
 use App\Models\User;
+use Database\Seeders\AppointmentSeeder;
 use Database\Seeders\SectionSeeder;
 use Database\Seeders\DoctorSeeder;
 use Database\Seeders\ImageSeeder;
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
          AdminSeeder::class,
          UserSeeder::class,
+         AppointmentSeeder::class,
          SectionSeeder::class,
          DoctorSeeder::class,
          ImageSeeder::class

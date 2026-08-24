@@ -11,19 +11,11 @@ class Doctor extends Model implements TranslatableContract
 {
     use HasFactory, Translatable;
 
-    // protected $fillable = [
-    //     'email',
-    //     'email_verified_at',
-    //     'password',
-    //     'phone',
-    //     'price',
-    //     'name','appointments'
-    // ];
+
     protected $guarded = [];
 
     public $translatedAttributes = [
         'name',
-        'appointments',
     ];
 
 
@@ -33,5 +25,10 @@ class Doctor extends Model implements TranslatableContract
     public function section(){
       return  $this->belongsTo(Section::class);
     }
+      public function doctorappointments()
+    {
+        return $this->belongsToMany(Appointment::class,'appointment_doctor');
+    }
+
 
 }

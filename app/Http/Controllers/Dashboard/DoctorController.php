@@ -47,12 +47,16 @@ class DoctorController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
-    
-    public function destroy(string $id)
+
+   public function destroy(Request $request)
     {
-        //
-    }
+      $this->Doctors->destroy($request);
+
+    session()->flash('delete');
+
+    return redirect()->route('Doctors.index');
+    }//End Method
 }

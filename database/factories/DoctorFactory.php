@@ -14,48 +14,30 @@ class DoctorFactory extends Factory
     public function definition(): array
     {
         return [
-            
+
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
             'phone' => $this->faker->unique()->phoneNumber,
-            'price' => $this->faker->randomElement([
-                100,
-                200,
-                300,
-                400,
-                500
-            ]),
+
             'section_id' => Section::inRandomOrder()->first()->id,
         ];
-       
+
     }
 
     public function configure()
     {
         return $this->afterCreating(function (Doctor $doctor) {
 
-            $doctor->translateOrNew('ar')->name = 'د. ' . fake()->name;
-            $doctor->translateOrNew('ar')->appointments = fake()->randomElement([
-                'Saturday',
-                'Sunday',
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-            ]);
+
+          $arFaker = \Faker\Factory::create('ar_EG');
+
+
+            $doctor->translateOrNew('ar')->name = 'د. ' . $arFaker->name();
+
 
             $doctor->translateOrNew('en')->name = 'Dr. ' . fake()->name;
-            $doctor->translateOrNew('en')->appointments = fake()->randomElement([
-                'Saturday',
-                'Sunday',
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-            ]);
+
 
             $doctor->save();
         });

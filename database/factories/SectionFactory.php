@@ -28,6 +28,7 @@ protected $model = Section::class;
             'قسم النساء والتوليد',
             'قسم العظام',
         ]),
+        'description'=>fake()->paragraph()
     ];
 }
 }

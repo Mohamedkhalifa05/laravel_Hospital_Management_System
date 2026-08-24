@@ -3,6 +3,8 @@
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
  trait UploadTrait {
 
@@ -33,7 +35,12 @@ public function verifyAndStoreImage(Request $request, $inputname , $foldername ,
 
     }
 
+ public function Delete_attachment($disk,$path,$id){
 
+        Storage::disk($disk)->delete($path);
+        image::where('imageable_id',$id)->delete();
+
+    }
 
 
 

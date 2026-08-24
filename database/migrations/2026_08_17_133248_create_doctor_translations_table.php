@@ -13,14 +13,14 @@ return new class extends Migration
             $table->id();
 
             // $table->unsignedBigInteger("doctor_id");//replace by foreignId('doctor_id')
-            //references('id')->on('sections') ==> constrained('doctors') 
+            //references('id')->on('sections') ==> constrained('doctors')
             $table->foreignId('doctor_id')->constrained('doctors') ->onDelete('cascade');
 
             $table->string('locale')->index();
 
             $table->string('name');
 
-           $table->string('appointments');
+        //    $table->string('appointments');
 
             $table->unique(['doctor_id', 'locale']);
 

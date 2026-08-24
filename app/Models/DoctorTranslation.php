@@ -12,13 +12,9 @@ class DoctorTranslation extends Model
         'doctor_id',
         'locale',
         'name',
-        'appointments',
     ];
 
     public $timestamps = false;
 
-//     public function doctor()
-//     {
-//         return $this->belongsTo(Doctor::class);
-//     }
+
  }

@@ -110,21 +110,21 @@
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
                                     <select multiple="multiple" class="testselect2" name="appointments[]">
                                         <option selected name="appointments[]" value="" selected disabled>-- حدد المواعيد --</option>
-                                        <option value="السبت">السبت</option>
+                                        {{-- <option value="السبت">السبت</option>
                                          <option value="الاحد">الاحد</option>
                                           <option value="الاثنين">الاثنين</option>
                                           <option value="الثلاثاء">الثلاثاء</option>
                                           <option value="الاربعاء">الاربعاء</option>
-                                          <option value="الخميس">الخميس</option>
-                                        {{-- @foreach($appointments as $appointment)
-                                            <option value="{{$appointment->id}}">{{$appointment->name}}</option>
-                                        @endforeach --}}
+                                          <option value="الخميس">الخميس</option> --}}
+                                        @foreach($appointments as $appointment)
+                                            <option value="{{$appointment->id}}" style="margin-left: 20px !important">{{$appointment->name}}</option>
+                                        @endforeach
                                     </select>
 
                                 </div>
 
                             </div>
-                              <div class="row row-xs align-items-center mg-b-20">
+                              {{-- <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-1">
                                     <label for="exampleInputEmail1">
                                         {{trans('doctors.price')}}</label>
@@ -132,7 +132,7 @@
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="price" type="number" step="0.01" placeholder="0.00" >
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-1">

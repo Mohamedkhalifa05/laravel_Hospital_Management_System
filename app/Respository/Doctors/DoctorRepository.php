@@ -18,9 +18,9 @@ class DoctorRepository implements DoctorRepositoryInterface
     public function index()
     {
 
-        $doctors = Doctor::all();
+        // $doctors = Doctor::all();
 
-
+      $doctors = Doctor::with('doctorappointments')->get();
         return view('Dashboard.Doctors.index',compact('doctors'));
     }
 
@@ -28,8 +28,8 @@ class DoctorRepository implements DoctorRepositoryInterface
     {
         $sections = Section::all();
 
-        // $appointments = Appointment::all();
-        return view('Dashboard.Doctors.add',compact('sections'));
+        $appointments = Appointment::all();
+        return view('Dashboard.Doctors.add',compact('sections',"appointments"));
     }
 
 
