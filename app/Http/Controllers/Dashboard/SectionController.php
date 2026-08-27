@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 
 use App\Interfaces\Sections\SectionRepositoryInterface;
+use App\Models\Doctor;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,10 @@ private $Sections ;
     }//End Method
 
 
-    public function show(string $id)
+    public function show( $id)
     {
-
+    return $this->Sections->show($id);
+    
     }//End Method
 
 

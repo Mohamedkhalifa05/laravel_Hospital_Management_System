@@ -23,7 +23,7 @@ interface DoctorRepositoryInterface
     public function edit($id);
 
     // update_password
-    public function update_password($request);
+    public function UpdatePassword($request);
 
     // update_status
     public function update_status($request);

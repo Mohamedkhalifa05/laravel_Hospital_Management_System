@@ -67,7 +67,7 @@
                                                  height="50px" width="50px" alt="">
 
                                         @else
-                                            <img src="{{Url::asset('Dashboard/img/doctor_default.png')}}" height="50px"
+                                            <img src="{{Url::asset('Dashboard/img/doctors/Doctor.jpg')}}" height="50px"
                                                  width="50px" alt="">
                                         @endif
                                     </td>
@@ -93,10 +93,10 @@
                                         <div class="dropdown">
                                             <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-outline-primary btn-sm" data-toggle="dropdown" type="button">{{trans('doctors.Processes')}}<i class="fas fa-caret-down mr-1"></i></button>
                                             <div class="dropdown-menu tx-13">
-                                                <a class="dropdown-item" href="{{route('Doctors.edit',$doctor->id)}}"><i style="color: #0ba360" class="text-success ti-user"></i>&nbsp;&nbsp;تعديل البيانات</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#update_password{{$doctor->id}}"><i   class="text-primary ti-key"></i>&nbsp;&nbsp;تغير كلمة المرور</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#update_status{{$doctor->id}}"><i   class="text-warning ti-back-right"></i>&nbsp;&nbsp;تغير الحالة</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete{{$doctor->id}}"><i   class="text-danger  ti-trash"></i>&nbsp;&nbsp;حذف البيانات</a>
+                                                <a class="dropdown-item" href="{{route('Doctors.edit',$doctor->id)}}"><i style="color: #0ba360" class="text-success ti-user"></i>&nbsp;&nbsp;{{ trans('Doctors.edit_data') }}</a>
+                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#update_password{{$doctor->id}}"><i   class="text-primary ti-key"></i>&nbsp;&nbsp;{{ trans('Doctors.update_password') }}</a>
+                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#update_status{{$doctor->id}}"><i   class="text-warning ti-back-right"></i>&nbsp;&nbsp;{{ trans('Doctors.Status_change') }}</a>
+                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete{{$doctor->id}}"><i   class="text-danger  ti-trash"></i>&nbsp;&nbsp;{{ trans('Doctors.delete_data') }}</a>
                                             </div>
                                         </div>
 
@@ -105,8 +105,8 @@
 
                                 @include('Dashboard.Doctors.delete')
                                 @include('Dashboard.Doctors.delete_select')
-                                {{-- @include('Dashboard.Doctors.update_password') --}}
-                                {{-- @include('Dashboard.Doctors.update_status') --}}
+                                @include('Dashboard.Doctors.update_password')
+                                @include('Dashboard.Doctors.update_status')
                             @endforeach
                             </tbody>
                         </table>
@@ -154,7 +154,37 @@
             });
         });
     </script>
+@if(session('open_password_modal'))
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#update_password{{ session('open_password_modal') }}')
+                .modal('show');
+
+        });
+
+    </script>
+
+@endif
+
+ <script>
+    $(document).on('hidden.bs.modal', '[id^="update_password"]', function () {
 
 
+        $(this).find('.password-error').remove();
+
+
+        $(this).find('input[name="password"]')
+            .removeClass('is-invalid')
+            .val('');
+
+        $(this).find('input[name="password_confirmation"]')
+            .removeClass('is-invalid')
+            .val('');
+
+    });
+</script>
 
 @endsection

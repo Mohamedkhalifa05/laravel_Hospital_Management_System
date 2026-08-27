@@ -2,6 +2,7 @@
 
 return array (
   'Choose' => 'Choose',
+  'Doctors' => 'Doctors',
   'Enabled' => 'Enabled',
   'Not_enabled' => 'Not_enabled',
   'Processes' => 'Processes',
@@ -11,9 +12,11 @@ return array (
   'appointments' => 'appointments',
   'confirm_password' => 'Confirm Password',
   'created_at' => 'created_at',
+  'delete_data' => 'Delete Data',
   'delete_doctor' => 'Delete Doctor',
   'delete_select' => 'Delete Group Doctors',
   'doctor_photo' => 'Doctor Photo',
+  'edit_data' => 'Edit Data',
   'email' => 'Email',
   'img' => 'img',
   'name' => 'Doctor Name',
@@ -21,6 +24,7 @@ return array (
   'password' => 'password',
   'phone' => 'phone',
   'price' => 'Examination price',
+  'same_password' => 'The new password must be different from the old password.',
   'section' => 'Section',
   'submit' => 'submit',
   'update_password' => 'Update Password',

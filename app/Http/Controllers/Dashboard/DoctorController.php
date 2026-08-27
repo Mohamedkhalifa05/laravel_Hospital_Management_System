@@ -39,16 +39,53 @@ class DoctorController extends Controller
     }
 
 
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        return $this->Doctors->edit($id);
     }
 
 
     public function update(Request $request, string $id)
     {
-        
+        $this->Doctors->update($request);
+
+    session()->flash('edit');
+
+    return redirect()->route('Doctors.index');
+
     }
+public function UpdatePassword(Request $request)
+{
+    $result = $this->Doctors->UpdatePassword($request);
+
+    if ($result !== true) {
+        return $result;
+    }
+
+    session()->flash('edit');
+
+    return redirect()->route('Doctors.index');
+}
+
+public function update_status( Request $request){
+$this->Doctors->update_status($request);
+
+ session()->flash('edit');
+
+    return redirect()->route('Doctors.index');
+}
+
+    public function clearPasswordErrors()
+{
+    session()->forget([
+        'errors',
+        'open_password_modal',
+    ]);
+
+    return response()->json([
+        'success' => true
+    ]);
+}
 
 
    public function destroy(Request $request)

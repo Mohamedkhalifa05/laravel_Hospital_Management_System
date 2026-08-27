@@ -37,7 +37,15 @@ class SectionRespository implements SectionRepositoryInterface {
     public function destroy( Request $request){
         $section = Section::findOrFail($request->id);
         $section->delete();
-    }
+    }//End Method
+
+    public function show($id){
+
+    $doctors = Section::findOrFail($id)->doctors;
+    $section = Section::findOrFail($id);
+    return view("Dashboard.Sections.show_doctors",compact("section","doctors"));
+
+    }//End Method
 
 
 

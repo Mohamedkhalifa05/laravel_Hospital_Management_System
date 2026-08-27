@@ -28,9 +28,7 @@ Route::group(
       Route::get("/dashboard",[DashboardController::class,"index"])->name("admin.dashboard");
        Route::post('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
        Route::resource('Sections',SectionController::class);
-       Route::resource('Doctors',DoctorController::class);
-
-
+     
       });
 
       Route::post("/admin/login",[AdminController::class,"store" ])->name("admin.login");

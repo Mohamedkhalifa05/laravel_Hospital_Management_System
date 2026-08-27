@@ -13,4 +13,8 @@ class Section extends Model
     use HasFactory;
     protected $fillable = ['name',"description"];
     public $translatedAttributes = ['name','description']  ;
+
+    public function doctors(){
+        return $this->hasMany(Doctor::class);
+    }
 }

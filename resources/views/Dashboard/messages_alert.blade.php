@@ -1,5 +1,5 @@
 
-@if ($errors->any())
+@if ($errors->any() && !session('open_password_modal'))
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)

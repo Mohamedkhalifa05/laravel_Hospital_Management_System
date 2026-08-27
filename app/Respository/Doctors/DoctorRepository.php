@@ -7,6 +7,7 @@ use App\Models\Doctor;
 use App\Models\Image;
 use App\Models\Section;
 use App\Traits\UploadTrait;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -45,17 +46,17 @@ class DoctorRepository implements DoctorRepositoryInterface
             $doctors->password = Hash::make($request->password);
             $doctors->section_id = $request->section_id;
             $doctors->phone = $request->phone;
-            $doctors->price = $request->price;
+            // $doctors->price = $request->price;
 
             $doctors->save();
 
             // store trans
             $doctors->name = $request->name;
-            $doctors->appointments = implode(",",$request->appointments);
+            // $doctors->appointments = implode(",",$request->appointments);
             $doctors->save();
 
             // insert pivot tABLE
-            // $doctors->doctorappointments()->attach($request->appointments);
+            $doctors->doctorappointments()->attach($request->appointments);
 
 
             //Upload img
@@ -76,6 +77,7 @@ class DoctorRepository implements DoctorRepositoryInterface
 
     public function update($request)
     {
+
         DB::beginTransaction();
 
         try {
@@ -111,6 +113,7 @@ class DoctorRepository implements DoctorRepositoryInterface
         }
         catch (\Exception $e) {
             DB::rollback();
+
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
@@ -158,24 +161,60 @@ class DoctorRepository implements DoctorRepositoryInterface
         return view('Dashboard.Doctors.edit',compact('sections','appointments','doctor'));
     }
 
-    public function update_password($request)
-    {
-        try {
-            $doctor = Doctor::findorfail($request->id);
-            $doctor->update([
-                'password'=>Hash::make($request->password)
-            ]);
+//
 
-            session()->flash('edit');
-            return redirect()->back();
+public function UpdatePassword($request)
+{
+    try {
+
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        // Validation
+        if ($validator->fails()) {
+
+            return redirect()
+                ->route('Doctors.index')
+                ->with('open_password_modal', $request->id)
+                ->with('password_validation_errors', $validator->errors()->toArray())
+                ->withInput();
         }
 
-        catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        $doctor = Doctor::findOrFail($request->id);
+
+        // Check old password
+        if (Hash::check($request->password, $doctor->password)) {
+
+            return redirect()
+                ->route('Doctors.index')
+                ->with('open_password_modal', $request->id)
+                ->with('password_validation_errors', [
+                    'password' => [
+                        trans('Doctors.same_password')
+                    ]
+                ])
+                ->withInput();
         }
+
+        // Update password
+        $doctor->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return true;
+
+    } catch (\Exception $e) {
+
+        return redirect()
+            ->route('Doctors.index')
+            ->with('password_validation_errors', [
+                'error' => $e->getMessage()
+            ])
+            ->with('open_password_modal', $request->id);
     }
-
-    public function update_status($request)
+}
+public function update_status($request)
     {
         try {
             $doctor = Doctor::findorfail($request->id);
@@ -183,14 +222,18 @@ class DoctorRepository implements DoctorRepositoryInterface
                 'status'=>$request->status
             ]);
 
-            session()->flash('edit');
-            return redirect()->back();
+
         }
 
         catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        return redirect()->back()
+            ->withErrors(['error' => $e->getMessage()])
+            ->with('open_password_modal', $request->id);
     }
+
+    }
+
+    
 
 
 }

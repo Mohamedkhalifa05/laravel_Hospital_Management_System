@@ -16,6 +16,13 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
+    // dd([
+    //     'url' => $request->url(),
+    //     'method' => $request->method(),
+    //     'admin_check' => auth()->guard('admin')->check(),
+    // ]);
+
+
     if (! auth()->guard('admin')->check()) {
         return redirect('/user/login');
     }

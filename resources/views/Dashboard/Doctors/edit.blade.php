@@ -41,10 +41,12 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('Doctors.update', 'test') }}" method="post" autocomplete="off"
+                    <form action="{{ route('Doctors.update', $doctor->id) }}" method="post" autocomplete="off"
                           enctype="multipart/form-data">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
+<button type="submit">Test Submit</button>
+
                         <div class="pd-30 pd-sm-40 bg-gray-200">
                             <div>
                                 @if($doctor->image)
@@ -53,7 +55,7 @@
                                          height="150px" width="150px" alt="">
                                 @else
                                     <img style="border-radius:50%"
-                                         src="{{Url::asset('Dashboard/img/doctor_default.png')}}"
+                                         src="{{Url::asset('Dashboard/img/doctors/doctor.jpg')}}"
                                          height="50px"
                                          width="50px" alt="">
                                 @endif
