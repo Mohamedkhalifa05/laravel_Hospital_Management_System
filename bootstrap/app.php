@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\userMiddleware;
 use App\Models\Admin;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -23,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
           $middleware->alias([
 
+             "user" =>  App\Http\Middleware\UserMiddleware::class,
              'admin' => \App\Http\Middleware\AdminMiddleware::class,
             /**** OTHER MIDDLEWARE ALIASES ****/
             'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

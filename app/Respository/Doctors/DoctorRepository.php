@@ -52,7 +52,7 @@ class DoctorRepository implements DoctorRepositoryInterface
 
             // store trans
             $doctors->name = $request->name;
-            // $doctors->appointments = implode(",",$request->appointments);
+            
             $doctors->save();
 
             // insert pivot tABLE
@@ -64,7 +64,7 @@ class DoctorRepository implements DoctorRepositoryInterface
 
             DB::commit();
             session()->flash('add');
-            return redirect()->route('Doctors.create');
+            return redirect()->route('Doctors.index');
 
         }
         catch (\Exception $e) {
@@ -233,7 +233,7 @@ public function update_status($request)
 
     }
 
-    
+
 
 
 }

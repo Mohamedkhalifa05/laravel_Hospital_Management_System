@@ -29,7 +29,7 @@ Route::get('/user/dashboard', function () {
          "alert-type" => "success"
         ]);
     return view('Dashboard.User.auth.dashboard')->with($notification);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['user'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

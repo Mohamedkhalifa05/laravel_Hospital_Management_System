@@ -39,7 +39,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         ->name('password.store');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('user')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 

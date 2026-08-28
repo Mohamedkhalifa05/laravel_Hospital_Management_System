@@ -57,7 +57,7 @@
                     </div>
                 </li>
             </ul>
-            {{-- {{ dd(Session::all()) }} --}}
+
 
 						<div class="nav nav-item  navbar-nav-right ml-auto">
 							<div class="nav-link" id="bs-example-navbar-collapse-1">
@@ -262,7 +262,7 @@
 									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
 									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
 
-                                    @if (Auth::guard("web")->check())
+                                    @if (Auth::guard("user")->check())
                                                            <form method="POST" action="{{ route('user.logout') }}">
                                   @csrf
 									<a class="dropdown-item"    onclick="event.preventDefault();
