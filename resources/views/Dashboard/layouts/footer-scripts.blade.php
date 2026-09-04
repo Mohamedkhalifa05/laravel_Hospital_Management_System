@@ -134,3 +134,5 @@
 
     @endif
 </script>
+
+  @livewireScripts

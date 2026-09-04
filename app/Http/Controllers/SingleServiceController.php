@@ -32,11 +32,10 @@ class SingleServiceController extends Controller
 
   public function update(StoreSingleServiceRequest $request){
    return $this->SingleServices->update($request);
- }
+ }//End Method
 
-
-    public function destroy(Request $request)
+  public function destroy(Request $request)
     {
       return $this->SingleServices->destroy($request);
-    }
+    }//End Method
 }

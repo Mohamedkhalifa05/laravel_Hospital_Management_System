@@ -28,6 +28,8 @@ Route::group(
        Route::post('Doctors/clear_password_errors', [DoctorController::class, 'clearPasswordErrors'])
        ->name('clear_password_errors');
        Route::resource("Service",SingleServiceController::class);
+     Route::view('Add_GroupServices','livewire.group-services.include_create')->name('Add_GroupServices');
+
 
       });
 
