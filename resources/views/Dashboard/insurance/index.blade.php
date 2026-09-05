@@ -1,7 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('css')
-<!--Internal   Notify -->
-<link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+    <link href="{{URL::asset('Dashboard/assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('title')
     {{trans('main-sidebar_trans.Insurance')}}
@@ -74,7 +73,7 @@
 @section('js')
 
     <!--Internal  Notify js -->
-    <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>
-    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/assets/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/assets/plugins/notify/js/notifit-custom.js')}}"></script>
 
 @endsection
