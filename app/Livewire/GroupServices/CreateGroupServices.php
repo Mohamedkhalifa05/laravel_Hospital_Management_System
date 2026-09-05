@@ -59,6 +59,7 @@ class CreateGroupServices extends Component
         'groups' => Group::all(),
         'subtotal' => $subtotal,
         'total' => $totalWithTax,
+
     ]);
 }
 
@@ -147,6 +148,7 @@ class CreateGroupServices extends Component
 
             $this->ServiceSaved = false;
             $this->ServiceUpdated = true;
+            $this->show_table = true ;
 
         }
 
@@ -188,6 +190,7 @@ class CreateGroupServices extends Component
             $this->reset('GroupsItems', 'name_group', 'notes');
             $this->discount_value = 0;
             $this->ServiceSaved = true;
+            $this->show_table = true ;
 
         }
 

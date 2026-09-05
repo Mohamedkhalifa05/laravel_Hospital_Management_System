@@ -20,6 +20,7 @@
                     <td>{{ $group->notes }}</td>
                     <td>
                         <button wire:click="edit({{ $group->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                        
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteGroup{{$group->id}}"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>

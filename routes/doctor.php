@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Dashboard\DoctorController;
+use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\SingleServiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -29,6 +30,7 @@ Route::group(
        ->name('clear_password_errors');
        Route::resource("Service",SingleServiceController::class);
      Route::view('Add_GroupServices','livewire.group-services.include_create')->name('Add_GroupServices');
+        Route::resource('insurance', InsuranceController::class);
 
 
       });
