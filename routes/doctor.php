@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
+use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\SingleServiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -32,7 +33,7 @@ Route::group(
      Route::view('Add_GroupServices','livewire.group-services.include_create')->name('Add_GroupServices');
         Route::resource('insurance', InsuranceController::class);
         Route::resource('Ambulance', AmbulanceController::class);
-
+        Route::resource('Patients', PatientController::class);
 
 
       });
