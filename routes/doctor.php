@@ -34,6 +34,7 @@ Route::group(
         Route::resource('insurance', InsuranceController::class);
         Route::resource('Ambulance', AmbulanceController::class);
         Route::resource('Patients', PatientController::class);
+     Route::view('single_invoices','livewire.single_invoices.index')->name('single-invoices');
 
 
       });

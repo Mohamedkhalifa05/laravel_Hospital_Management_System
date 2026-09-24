@@ -1,6 +1,9 @@
 @extends('Dashboard.layouts.master')
 @section('css')
-    <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+    <link href="{{URL::asset('Dashboard/assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+@endsection
+@section('title')
+ {{ trans('Patient.Patient') }}
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->

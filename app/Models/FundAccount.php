@@ -7,17 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
-class Patient extends Model implements TranslatableContract
+class FundAccount extends Model
 {
-    
-     use HasFactory, Translatable;
+       use HasFactory;
 
 
     protected $guarded = [];
 
-    public $translatedAttributes = [
-        'name',
-        "Address"
-    ];
 
 }

@@ -1,7 +1,7 @@
 @extends('Dashboard.layouts.master')
 @section('css')
     <!--Internal   Notify -->
-    <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+    <link href="{{URL::asset('Dashboard/assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('title')
    اضافة مريض جديد
@@ -34,7 +34,17 @@
 
                         <div class="col">
                             <label>البريد الالكتروني</label>
-                            <input type="email" name="email"  value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" required>
+                           <input type="email"
+                         name="email"
+                               value="{{ old('email') }}"
+                            class="form-control @error('email') is-invalid @enderror"
+                          required>
+
+                      @error('email')
+                      <div class="invalid-feedback">
+                      {{ $message }}
+                        </div>
+                        @enderror
                         </div>
 
 
@@ -105,12 +115,12 @@
 @section('js')
 
     <!--Internal  Datepicker js -->
-    <script src="{{ URL::asset('dashboard/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+    <script src="{{ URL::asset('Dashboard/assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
     <script>
         var date = $('.fc-datepicker').datepicker({
             dateFormat: 'yy-mm-dd'
         }).val();
     </script>
-    <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>
-    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/assets/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/assets/plugins/notify/js/notifit-custom.js')}}"></script>
 @endsection

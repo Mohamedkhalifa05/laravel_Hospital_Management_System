@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Admin;
+use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePatientRequest extends FormRequest
@@ -25,7 +28,28 @@ class StorePatientRequest extends FormRequest
     {
         return [
             "name" => 'required',
-            "email" => 'required|email|unique:patients,email,'.$this->id,
+
+            "email" => [
+                'required',
+                'email',
+                function ($attribute, $value, $fail) {
+
+                   
+                    $patientQuery = Patient::where('email', $value);
+
+                    if ($this->id) {
+                        $patientQuery->where('id', '!=', $this->id);
+                    }
+
+                    if (
+                        $patientQuery->exists() ||
+                        Admin::where('email', $value)->exists() ||
+                        User::where('email', $value)->exists()
+                    ) {
+                        $fail('هذا البريد الإلكتروني مستخدم بالفعل.');
+                    }
+                },
+            ],
             "password" => 'required|sometimes',
             "Phone" => 'required|numeric|unique:patients,Phone,'.$this->id,
             'Date_Birth' => 'required|date|date_format:Y-m-d',
