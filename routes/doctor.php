@@ -4,6 +4,8 @@ use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\PatientController;
+use App\Http\Controllers\Dashboard\PaymentAccountController;
+use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\SingleServiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -34,8 +36,20 @@ Route::group(
         Route::resource('insurance', InsuranceController::class);
         Route::resource('Ambulance', AmbulanceController::class);
         Route::resource('Patients', PatientController::class);
-     Route::view('single_invoices','livewire.single_invoices.index')->name('single-invoices');
+      Route::view('single_invoices','livewire.single_invoices.index')->name('single-invoices');
+        Route::view('Print_single_invoices','livewire.single_invoices.print')->name('Print_single_invoices');
 
+     //############################# Receipt route ##########################################
+
+        Route::resource('Receipt', ReceiptAccountController::class);
+
+        //############################# end Receipt route ######################################
+
+     //############################# Payment route ##########################################
+
+        Route::resource('Payment', PaymentAccountController::class);
+
+        //############################# end Receipt route ######################################
 
       });
 

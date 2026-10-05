@@ -111,7 +111,7 @@ class SingleInvoices extends Component
         $this->Service_id = $single_invoice->Service_id;
         $this->price = $single_invoice->price;
         $this->discount_value = $single_invoice->discount_value;
-        $this->type = $single_invoice->type;
+        $this->invoice_type = $single_invoice->invoice_type;
 
 
     }
@@ -340,7 +340,7 @@ public function store()
                     - $single_invoices->discount_value
                     + $single_invoices->tax_value;
 
-                $single_invoices->type = $this->type;
+                // $single_invoices->type = $this->type;
 
                 $single_invoices->save();
 
@@ -506,22 +506,7 @@ public function store()
         return redirect()->to('/single_invoices');
     }
 
-public function create()
-{
-    $this->updateMode = false;
-    $this->single_invoice_id = null;
 
-    $this->reset([
-        'patient_id',
-        'doctor_id',
-        'section_id',
-        'Service_id',
-        'price',
-        'discount_value',
-        'tax_rate',
-        'invoice_type',
-    ]);
-}
 
 
 
