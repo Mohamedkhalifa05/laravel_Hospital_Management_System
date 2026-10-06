@@ -82,7 +82,7 @@
                                 <tr>
                                     <td>1</td>
                                     <td class="tx-12">{{ $payment_account->description}}</td>
-                                    <td class="tx-center">{{ number_format($payment_account->credit,2)}}</td>
+                                    <td class="tx-center">{{ number_format($payment_account->amount,2)}}</td>
                                 </tr>
                                 </tbody>
                             </table>

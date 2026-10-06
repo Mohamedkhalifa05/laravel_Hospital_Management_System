@@ -25,6 +25,7 @@ class PatientRespository implements PatientRepositoryInterface
         $invoices = Invoice::where('patient_id', $id)->get();
         $receipt_accounts = ReceiptAccount::where('patient_id', $id)->get();
         $Patient_accounts = PatientAccount::where('patient_id', $id)->get();
+        
 
         return view('Dashboard.Patients.show', compact('Patient', 'invoices', 'receipt_accounts', 'Patient_accounts'));
     }
