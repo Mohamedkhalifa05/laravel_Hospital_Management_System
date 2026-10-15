@@ -22,7 +22,7 @@
         @foreach ($single_invoices as $single_invoice)
             <tr>
                 <td>{{ $loop->iteration}}</td>
-                <td>{{ $single_invoice->Service->name }}</td>
+                <td>{{ $single_invoice->Service->name ?? " " }}</td>
                 <td>{{ $single_invoice->Patient->name }}</td>
                 <td>{{ $single_invoice->invoice_date }}</td>
                 <td>{{ $single_invoice->Doctor->name }}</td>

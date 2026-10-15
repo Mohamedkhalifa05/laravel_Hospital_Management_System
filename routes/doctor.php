@@ -50,6 +50,11 @@ Route::group(
         Route::resource('Payment', PaymentAccountController::class);
 
         //############################# end Receipt route ######################################
+        //############################ Group invoices route ######################################
+
+        Route::view('group_invoices','livewire.group_invoices.index')->name('group-invoices');
+        Route::view('Print_group_invoices','livewire.group_invoices.print')->name('Print_group_invoices');
+        //############################# end Receipt route ######################################
 
       });
 

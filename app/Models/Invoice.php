@@ -30,6 +30,10 @@ class Invoice extends Model
     {
         return $this->belongsTo(Section::class);
     }
+    public function Group()
+{
+    return $this->belongsTo(Group::class,"Group_id");
+}
 
 
 }

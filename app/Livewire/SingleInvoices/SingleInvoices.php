@@ -37,7 +37,10 @@ class SingleInvoices extends Component
     public function render()
     {
         return view('livewire.single_invoices.single-invoices', [
-            'single_invoices'=>Invoice::get(),
+            // 'single_invoices'=>Invoice::get(),
+              'single_invoices' => Invoice::
+    whereNotNull('Service_id')->whereNull("Group_id")
+    ->get(),
             'Patients'=> Patient::all(),
             'Doctors'=> Doctor::all(),
             'Services'=> Service::all(),
