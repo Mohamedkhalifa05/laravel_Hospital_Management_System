@@ -241,16 +241,44 @@
 										<a href="">VIEW ALL</a>
 									</div>
 								</div>
+                                @php
+    $authGuard = null;
+
+    foreach (['web', 'admin', 'doctor'] as $guard) {
+        if (Auth::guard($guard)->check()) {
+            $authGuard = $guard;
+            break;
+        }
+    }
+
+    $authUser = $authGuard ? Auth::guard($authGuard)->user() : null;
+    $imageFilename = $authUser?->image?->filename;
+
+    $imageFolders = [
+        'web' => 'Dashboard/img/users/',
+        'admin' => 'Dashboard/img/admins/',
+        'doctor' => 'Dashboard/img/doctors/',
+    ];
+
+    $imagePath = $imageFilename && $authGuard
+        ? public_path($imageFolders[$authGuard] . $imageFilename)
+        : null;
+
+    $avatar = $imagePath && file_exists($imagePath)
+        ? asset($imageFolders[$authGuard] . $imageFilename)
+        : asset('Dashboard/assets/img/faces/6.jpg');
+@endphp
+
 							</div>
 							<div class="nav-item full-screen fullscreen-button">
 								<a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg></a>
 							</div>
 							<div class="dropdown main-profile-menu nav nav-item nav-link">
-								<a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset('Dashboard/assets/img/faces/6.jpg')}}"></a>
+								<a class="profile-user d-flex" href=""><img alt="" src="{{ $avatar }}"></a>
 								<div class="dropdown-menu">
 									<div class="main-header-profile bg-primary p-3">
 										<div class="d-flex wd-100p">
-											<div class="main-img-user"><img alt="" src="{{URL::asset('Dashboard/assets/img/faces/6.jpg')}}" class=""></div>
+											<div class="main-img-user"><img alt="" src="{{$avatar}}" class=""></div>
 											<div class="mr-3 my-auto">
 												<h6>Petey Cruiser</h6><span>Premium Member</span>
 											</div>
@@ -276,6 +304,15 @@
 									<a class="dropdown-item"    onclick="event.preventDefault();
                                                 this.closest('form').submit();"
                                      href="{{ route('admin.logout') }}"><i class="bx bx-log-out"></i> Sign Out</a>
+
+                               </form>
+
+                                    @elseif (Auth::guard("doctor")->check())
+                                                           <form method="POST" action="{{ route('doctor.logout') }}">
+                                  @csrf
+									<a class="dropdown-item"    onclick="event.preventDefault();
+                                                this.closest('form').submit();"
+                                     href="{{ route('doctor.logout') }}"><i class="bx bx-log-out"></i> Sign Out</a>
 
                                </form>
                                     @endif

@@ -23,13 +23,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/user/dashboard', function () {
-    $notification = array([
-         "message" => "Admin Login Successfully",
-         "alert-type" => "success"
-        ]);
-    return view('Dashboard.User.auth.dashboard')->with($notification);
-})->middleware(['user'])->name('dashboard');
+    $notification = [
+        'message' => 'User Login Successfully',
+        'alert-type' => 'success',
+    ];
+
+    return view('Dashboard.User.auth.dashboard')
+        ->with($notification);
+})->middleware('auth:user')->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

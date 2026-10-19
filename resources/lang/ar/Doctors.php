@@ -2,6 +2,8 @@
 
 return array (
   'Choose' => 'اختار من القائمة',
+
+  'Doctor' => 'تسجيل الدخول كدكتور',
   'Doctors' => 'الاطباء',
   'Enabled' => 'مفعل',
   'Not_enabled' => 'غير مفعل',
@@ -29,4 +31,7 @@ return array (
   'submit' => 'تاكيد',
   'update_password' => 'تغير  كلمة  المرور',
   'view_all' => 'عرض الكل',
+  "Doctor Login Successfully" =>"تسجيل الدخول بنجاح يا دكتور ",
+  "Doctor Email or Password is Not Correct" => "الايميل او  الباسورد غير صحيح"
+
 );

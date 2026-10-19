@@ -25,6 +25,16 @@ Route::group(
     ]
 ], function(){
 
+
+
+
+
+       Route::prefix('doctor')->middleware("doctor")->group(function(){
+      Route::get("/dashboard",[DoctorController::class,"DoctorDashboard"])->name("doctor.dashboard");
+       Route::post('/logout', [DoctorController::class, 'DoctorLogindestroy'])->name('doctor.logout');
+      });
+      Route::post("/doctor/login",[DoctorController::class,"DoctorLoginstore" ])->name("doctor.login");
+
       Route::middleware("admin")->group(function(){
        Route::resource('Doctors',DoctorController::class);
        Route::post('Doctors/update_password',[DoctorController::class,"UpdatePassword"])->name('update_password');

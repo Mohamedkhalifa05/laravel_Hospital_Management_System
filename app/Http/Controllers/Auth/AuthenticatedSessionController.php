@@ -22,35 +22,68 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
 
-    {
 
+public function store(LoginRequest $request): RedirectResponse
+{
     try {
-
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        $notificaton = [
+        $notification = [
             'message' => trans('Dashboard/messages.User Login Successfully'),
             'alert-type' => 'success',
         ];
 
-        return redirect()->intended(route('dashboard', absolute: false))->with($notificaton);
+        return redirect()
+            ->route('dashboard')
+            ->with($notification);
 
     } catch (\Illuminate\Validation\ValidationException $e) {
+        $notification = [
+            'message' => trans('Dashboard/messages.User Email or Password is Not Correct'),
+            'alert-type' => 'error',
+        ];
 
-
-    $notificaton = [
-                'message' => trans('Dashboard/messages.User Email or Password is Not Correct'),
-                'alert-type' => 'error',
-            ];
-        return redirect()->back() ->with($notificaton);
+        return redirect()
+            ->back()
+            ->with($notification);
     }
+}
+
+    // public function store(LoginRequest $request): RedirectResponse
+
+    // {
+
+    // try {
+
+    //     $request->authenticate();
+
+    //    $request->session()->regenerate();
 
 
-    }
+
+
+    //     $notificaton = [
+    //         'message' => trans('Dashboard/messages.User Login Successfully'),
+    //         'alert-type' => 'success',
+    //     ];
+
+    //     return redirect()->intended(route('dashboard', absolute: false))->with($notificaton);
+
+    // } catch (\Illuminate\Validation\ValidationException $e) {
+
+
+    // $notificaton = [
+    //             'message' => trans('Dashboard/messages.User Email or Password is Not Correct'),
+    //             'alert-type' => 'error',
+    //         ];
+    //     return redirect()->back() ->with($notificaton);
+    // }
+
+
+    // }
 
     /**
      * Destroy an authenticated session.

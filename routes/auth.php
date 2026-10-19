@@ -22,9 +22,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('user/login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
+        ->name('user.login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store'])->name("user.login");
+    Route::post('user/login', [AuthenticatedSessionController::class, 'store'])->name("user.login.store");
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');

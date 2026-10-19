@@ -10,21 +10,57 @@
 			<div class="main-sidemenu">
 				<div class="app-sidebar__user clearfix">
 					<div class="dropdown user-pro-body">
-						<div class="">
-							<img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('Dashboard/assets/img/faces/6.jpg')}}"><span class="avatar-status profile-status bg-green"></span>
-						</div>
-						<div class="user-info">
-                            @if (Auth::guard(("web"))->check())
-                               <h4 class="font-weight-semibold mt-3 mb-0">{{ Auth::user()->name }}</h4>
-							<span class="mb-0 text-muted">{{ Auth::user()->email }}</span>
-                            @elseif (Auth::guard(("admin"))->check())
-                                  <h4 class="font-weight-semibold mt-3 mb-0">{{ Auth::guard('admin')->user()->name }}</h4>
-							<span class="mb-0 text-muted">{{ Auth::guard('admin')->user()->email }}</span>
-                            @endif
 
-						</div>
-					</div>
-				</div>
+
+@php
+    $authGuard = null;
+
+    foreach (['web', 'admin', 'doctor'] as $guard) {
+        if (Auth::guard($guard)->check()) {
+            $authGuard = $guard;
+            break;
+        }
+    }
+
+    $authUser = $authGuard ? Auth::guard($authGuard)->user() : null;
+    $imageFilename = $authUser?->image?->filename;
+
+    $imageFolders = [
+        'web' => 'Dashboard/img/users/',
+        'admin' => 'Dashboard/img/admins/',
+        'doctor' => 'Dashboard/img/doctors/',
+    ];
+
+    $imagePath = $imageFilename && $authGuard
+        ? public_path($imageFolders[$authGuard] . $imageFilename)
+        : null;
+
+    $avatar = $imagePath && file_exists($imagePath)
+        ? asset($imageFolders[$authGuard] . $imageFilename)
+        : asset('Dashboard/assets/img/faces/6.jpg');
+@endphp
+
+<div>
+    <img
+        alt="user-img"
+        class="avatar avatar-xl brround"
+        src="{{ $avatar }}"
+    >
+    <span class="avatar-status profile-status bg-green"></span>
+</div>
+
+<div class="user-info">
+    @if ($authUser)
+        <h4 class="font-weight-semibold mt-3 mb-0">
+            {{ $authUser->name }}
+        </h4>
+
+        <span class="mb-0 text-muted">
+            {{ $authUser->email }}
+        </span>
+    @endif
+</div>
+
 				<ul class="side-menu">
 					<li class="side-item side-item-category">{{ trans('Dashboard/main-sidebar_trans.Main') }}</li>
 					<li class="slide">

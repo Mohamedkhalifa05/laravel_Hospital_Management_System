@@ -1,4 +1,4 @@
-@extends('Dashboard.layouts.master')
+@extends('Dashboard.layouts.master_user')
 @section('title')
 User Dashboard
 @endsection

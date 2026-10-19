@@ -2,6 +2,7 @@
 
 return array (
   'Choose' => 'Choose',
+  'Doctor' => 'Login as Doctor',
   'Doctors' => 'Doctors',
   'Enabled' => 'Enabled',
   'Not_enabled' => 'Not_enabled',
@@ -15,6 +16,7 @@ return array (
   'delete_data' => 'Delete Data',
   'delete_doctor' => 'Delete Doctor',
   'delete_select' => 'Delete Group Doctors',
+  'doctor' => 'Login as Doctor',
   'doctor_photo' => 'Doctor Photo',
   'edit_data' => 'Edit Data',
   'email' => 'Email',

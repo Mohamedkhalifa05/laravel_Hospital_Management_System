@@ -93,6 +93,7 @@ Login
                                                   <option selected disabled>{{ trans('Dashboard/login_trans.Choose_list') }}</option>
                                                   <option value="user">{{ trans('Dashboard/login_trans.user') }}</option>
                                                   <option value="admin">{{ trans('Dashboard/login_trans.admin') }}</option>
+                                                  <option value="doctor">{{ trans('Doctors.Doctor') }}</option>
 
                                                 </select>
                                                       {{--form user--}}
@@ -148,6 +149,32 @@ Login
                                                 </div>
                                             </div>
 
+                                            {{--doctor login--}}
+                                            <div class="loginform" id="doctor">
+
+                                                <form method="POST" action="{{ route("doctor.login") }}">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label>{{ trans('Dashboard/login_trans.Email') }}</label> <input  class="form-control" placeholder="Enter your email" type="email" name="email" :value="old('email')" required autofocus>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('Dashboard/login_trans.Password') }}</label> <input class="form-control" placeholder="Enter your password"   type="password"name="password" required autocomplete="current-password" >
+                                                    </div><button type="submit" class="btn btn-main-primary btn-block">{{ trans('Dashboard/login_trans.Sign In') }}</button>
+                                                    <div class="row row-xs">
+                                                        <div class="col-sm-6">
+                                                            <button class="btn btn-block"><i class="fab fa-facebook-f"></i> {{ trans('Dashboard/login_trans.Signup with Facebook') }}</button>
+                                                        </div>
+                                                        <div class="col-sm-6 mg-t-10 mg-sm-t-0">
+                                                            <button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> {{ trans('Dashboard/login_trans.Signup with Google') }}</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="main-signin-footer mt-5">
+                                                    <p><a href="">{{ trans('Dashboard/login_trans.Forgot password') }}?</a></p>
+                                                    <p>{{ trans('Dashboard/login_trans.Dont have an account')}}? <a href="{{ url('/' . $page='signup') }}">{{ trans('Dashboard/login_trans.Create an Account') }}</a></p>
+                                                </div>
+                                            </div>
+                                            {{--doctor login--}}
 
 											</div>
 										</div>
