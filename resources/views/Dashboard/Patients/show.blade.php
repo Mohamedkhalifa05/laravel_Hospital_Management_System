@@ -189,7 +189,7 @@
                                                                 @elseif($Patient_account->receipt_id == true)
                                                                     {{$Patient_account->ReceiptAccount->description}}
 
-                                                                @elseif($Patient_account->Payment_id == true)
+                                                                @elseif($Patient_account->payment_id == true)
                                                                     {{$Patient_account->PaymentAccount->description}}
                                                                 @endif
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\PaymentAccountController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
+use App\Http\Controllers\doctor\DiagnosticsController;
+use App\Http\Controllers\doctor\InvoiceController;
 use App\Http\Controllers\SingleServiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -27,13 +29,25 @@ Route::group(
 
 
 
-
-
+    /****************************Doctor Login and doctor routes ***************************** */
        Route::prefix('doctor')->middleware("doctor")->group(function(){
+    /****************************Doctor Login ***************************** */
+
       Route::get("/dashboard",[DoctorController::class,"DoctorDashboard"])->name("doctor.dashboard");
        Route::post('/logout', [DoctorController::class, 'DoctorLogindestroy'])->name('doctor.logout');
+
+    /****************************Doctor Login ***************************** */
+    /****************************Invoice Routes***************************** */
+    Route::resource('Invoices', InvoiceController::class);
+    /****************************Invoice Routes***************************** */
+    /****************************Diagnostics Routes***************************** */
+    Route::resource('Diagnostics', DiagnosticsController::class);
+  
+    /****************************Diagnostics Routes***************************** */
+
       });
       Route::post("/doctor/login",[DoctorController::class,"DoctorLoginstore" ])->name("doctor.login");
+    /****************************Doctor Login ***************************** */
 
       Route::middleware("admin")->group(function(){
        Route::resource('Doctors',DoctorController::class);
