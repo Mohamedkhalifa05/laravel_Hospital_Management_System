@@ -26,7 +26,10 @@
 				@yield('content')
 				@include('Dashboard.layouts.sidebar')
 				@include('Dashboard.layouts.models')
-            	@include('Dashboard.layouts.footer')
+                <div style="margin-bottom: 0px">
+                 @include('Dashboard.layouts.footer')
+                </div>
+            	
 				@include('Dashboard.layouts.footer-scripts')
 	</body>
 </html>

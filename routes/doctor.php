@@ -42,6 +42,11 @@ Route::group(
     /****************************Invoice Routes***************************** */
     /****************************Diagnostics Routes***************************** */
     Route::resource('Diagnostics', DiagnosticsController::class);
+    Route::post("AddReview",[DiagnosticsController::class , "addReview"])->name('add_review');
+    Route::get("completedInvoices",[InvoiceController::class,"completedInvoices"])->name("completedInvoices");
+    Route::get("reviewInvoices",[InvoiceController::class,"reviewInvoices"])->name("reviewInvoices");
+
+    
   
     /****************************Diagnostics Routes***************************** */
 

@@ -19,6 +19,10 @@ class DiagnosticsController extends Controller
         //
     }
 
+    public function addReview(Request $request){
+        return $this->Diagnostics->addReview($request);
+    }
+
    
     public function create()
     {
