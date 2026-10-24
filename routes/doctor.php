@@ -6,8 +6,11 @@ use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\PaymentAccountController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
+use App\Http\Controllers\doctor\PatientDetailsController;
 use App\Http\Controllers\doctor\DiagnosticsController;
 use App\Http\Controllers\doctor\InvoiceController;
+use App\Http\Controllers\doctor\LaboratorieController;
+use App\Http\Controllers\doctor\RayController;
 use App\Http\Controllers\SingleServiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -46,8 +49,14 @@ Route::group(
     Route::get("completedInvoices",[InvoiceController::class,"completedInvoices"])->name("completedInvoices");
     Route::get("reviewInvoices",[InvoiceController::class,"reviewInvoices"])->name("reviewInvoices");
 
-    
+    Route::resource("Ray",RayController::class);
+    Route::resource('Laboratories',LaboratorieController::class);
+
+    Route::get('patient_details/{id}',[PatientDetailsController::class,'index'])->name("patient_details");
   
+    Route::post('rays_update/{id}',[RayController::class,'update'])->name("rays.update");
+     Route::post('delete/{id}',[RayController::class,'destroy'])->name("rays.destroy");
+
     /****************************Diagnostics Routes***************************** */
 
       });

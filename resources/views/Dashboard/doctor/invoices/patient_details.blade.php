@@ -1,17 +1,18 @@
-@extends('Dashboard.layouts.master')
+@extends('Dashboard.layouts.master_doctor')
 @section('css')
-    <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+    <link href="{{URL::asset('Dashboard/assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
+
 @section('title')
-    معلومات المريض
+    {{ $patient_name }} 
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Pages</h4><span
-                    class="text-muted mt-1 tx-13 mr-2 mb-0">/ Empty</span>
+                <h4 class="content-title mb-0 my-auto">معلومات المريض</h4><span
+                    class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ $patient_name }}</span>
             </div>
         </div>
     </div>
@@ -55,7 +56,7 @@
                                                                 <h6 class="timeline-title">Art Ramadani posted a status update</h6>
                                                             </div>
                                                             <div class="timeline-body">
-                                                                <p>{{$patient_record->diagnosis}}</p>
+                                                                <p>{{$patient_record->diagnosis ?? "لايوجد تشخيص"}}</p>
                                                             </div>
                                                             <div class="timeline-footer d-flex align-items-center flex-wrap">
                                                                 <i class="fas fa-user-md"></i>&nbsp;
@@ -83,7 +84,7 @@
                                                         <th>#</th>
                                                         <th>اسم الخدمه</th>
                                                         <th>اسم الدكتور</th>
-                                                        <th>اسم موظف الاشعة</th>
+                                                        {{-- <th>اسم موظف الاشعة</th> --}}
                                                         <th>حالة الكشف</th>
                                                         <th>العمليات</th>
                                                     </tr>
@@ -96,7 +97,7 @@
                                                             <td>{{$patient_ray->doctor->name}}</td>
 {{--                                                        <td>{{$patient_ray->employee_id !==null ? $patient_ray->employee->name:'NOEmployee'}}</td>--}}
 {{--                                                         <td>{{$patient_ray->employee->name ?? 'noEmployee'}}</td>--}}
-                                                            <td>{{$patient_ray->employee->name}}</td>
+                                                            {{-- <td>{{$patient_ray->employee->name}}</td> --}}
 
 
                                                             @if($patient_ray->case == 0)
@@ -106,7 +107,7 @@
                                                             @endif
 
 
-                                                            @if($patient_ray->doctor_id == auth()->user()->id)
+                                                            @if($patient_ray->doctor_id == Auth::guard("doctor")->user()->id)
                                                                 @if($patient_ray->case == 0)
                                                                 <td>
                                                                     <a class="modal-effect btn btn-sm btn-primary" data-effect="effect-scale"  data-toggle="modal" href="#edit_xray_conversion{{$patient_ray->id}}"><i class="fas fa-edit"></i></a>
@@ -153,7 +154,7 @@
                                                             <td>{{$patient_Laboratorie->description}}</td>
                                                             <td>{{$patient_Laboratorie->doctor->name}}</td>
 
-                                                            @if($patient_Laboratorie->doctor_id == auth()->user()->id)
+                                                            @if($patient_Laboratorie->doctor_id == Auth::guard("doctor")->user()->id)
                                                                 @if($patient_Laboratorie->case == 0)
                                                                     <td>
                                                                         <a class="modal-effect btn btn-sm btn-primary" data-effect="effect-scale"  data-toggle="modal" href="#edit_xray_conversion{{$patient_Laboratorie->id}}"><i class="fas fa-edit"></i></a>
@@ -174,7 +175,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
+                                        </div> 
 
                                         {{-- End Receipt Patient  --}}
 
@@ -197,6 +198,6 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>
-    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/assets/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('Dashboard/assets/plugins/notify/js/notifit-custom.js')}}"></script>
 @endsection
