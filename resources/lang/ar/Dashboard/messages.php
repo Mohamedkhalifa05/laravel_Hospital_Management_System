@@ -22,6 +22,8 @@ return [
     'User Login Successfully' => 'تم تسجيل الدخول  بنجاح',
     "User Email or Password is Not Correct" => 'البريد الالكتروني او كلمة لمرور غير صحيحة',
     'User Logout Successfully'=>'تم تسجيل الجروج بنجاح',
+    "RayEmployee Login Successfully" =>"RayEmployee Login Successfully",
+     "RayEmployee Email or Password is Not Correct" => "RayEmployee Email or Password is Not Correct",
 
 
 ];

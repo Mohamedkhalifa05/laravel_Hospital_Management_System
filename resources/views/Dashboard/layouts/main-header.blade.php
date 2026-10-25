@@ -315,6 +315,14 @@
                                      href="{{ route('doctor.logout') }}"><i class="bx bx-log-out"></i> Sign Out</a>
 
                                </form>
+                                @elseif (Auth::guard("ray_employee")->check())
+                                                           <form method="POST" action="{{ route('ray_employee.logout') }}">
+                                  @csrf
+									<a class="dropdown-item"    onclick="event.preventDefault();
+                                                this.closest('form').submit();"
+                                     href="{{ route('ray_employee.logout') }}"><i class="bx bx-log-out"></i> Sign Out</a>
+
+                               </form>
                                     @endif
 
 								</div>

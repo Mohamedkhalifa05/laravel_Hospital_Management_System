@@ -22,6 +22,8 @@ return [
     'User Login Successfully'=>'User Login Successfully',
     "User Email or Password is Not Correct" => "User Email or Password is Not Correct",
      'User Logout Successfully'=>'User Logout Successfully',
+     "RayEmployee Login Successfully" =>"RayEmployee Login Successfully",
+     "RayEmployee Email or Password is Not Correct" => "RayEmployee Email or Password is Not Correct",
 
 
 

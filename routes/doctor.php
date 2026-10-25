@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\PaymentAccountController;
+use App\Http\Controllers\Dashboard\RayEmployeeController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\doctor\PatientDetailsController;
 use App\Http\Controllers\doctor\DiagnosticsController;
@@ -56,7 +57,7 @@ Route::group(
   
     Route::post('rays_update/{id}',[RayController::class,'update'])->name("rays.update");
      Route::post('delete/{id}',[RayController::class,'destroy'])->name("rays.destroy");
-
+     Route::resource('ray_employee',RayEmployeeController::class);
     /****************************Diagnostics Routes***************************** */
 
       });

@@ -20,6 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->group(base_path('routes/admin.php'));
     Route::middleware('web')
     ->group(base_path('routes/doctor.php'));
+    Route::middleware('web')
+    ->group(base_path('routes/ray_employee.php'));
 
     }
 
@@ -28,8 +30,9 @@ return Application::configure(basePath: dirname(__DIR__))
           $middleware->alias([
 
              "user" =>  App\Http\Middleware\UserMiddleware::class,
-             'admin' => \App\Http\Middleware\AdminMiddleware::class,
-             'doctor' => \App\Http\Middleware\DoctorMiddleware::class,
+             'admin' => App\Http\Middleware\AdminMiddleware::class,
+             'doctor' => App\Http\Middleware\DoctorMiddleware::class,
+             "ray_employee" => App\Http\Middleware\RayEmployeeMiddleware::class,
 
 
 
